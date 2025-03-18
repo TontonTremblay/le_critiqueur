@@ -1,4 +1,4 @@
-# LLM Paper Reviewer
+# LE CRITIQUEUR
 
 An AI-powered paper review system that provides comprehensive academic paper reviews using OpenAI's GPT models.
 
