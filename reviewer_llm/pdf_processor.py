@@ -21,15 +21,19 @@ class PDFProcessor:
             ValueError: If the PDF file is corrupted or empty
         """
         try:
+            print(f"      - Opening PDF file: {pdf_path}")
             reader = PdfReader(pdf_path)
             
             # Check if PDF is empty
             if len(reader.pages) == 0:
                 raise ValueError("PDF file is empty")
             
+            print(f"      - PDF has {len(reader.pages)} pages")
+            
             # Extract text from all pages
             text = ""
-            for page in reader.pages:
+            for i, page in enumerate(reader.pages, 1):
+                print(f"      - Processing page {i}/{len(reader.pages)}")
                 text += page.extract_text() + "\n"
             
             # Remove excessive whitespace
@@ -37,7 +41,8 @@ class PDFProcessor:
             
             if not text.strip():
                 raise ValueError("No text could be extracted from the PDF")
-                
+            
+            print(f"      - Successfully extracted {len(text)} characters")
             return text
             
         except FileNotFoundError:
